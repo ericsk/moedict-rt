@@ -13,8 +13,8 @@ namespace MoeDictRT
       /// <summary>
       /// Look up the radical of a word
       /// </summary>
-      /// <param name="word" type="Platform::String^">The word to be looked up.</param>
-      /// <returns type="Windows::Foundation::IAsyncOperation<Platform::String^>^" />
+      /// <param name="word" type="String^">The word to be looked up.</param>
+      /// <returns type="IAsyncOperation<IMap<String^, String^>^>^" />
       Windows::Foundation::IAsyncOperation<
       Windows::Foundation::Collections::IMap<
         Platform::String^, 

@@ -39,7 +39,7 @@ moedict-rt 是根據「[還文於民](http://3du.tw)」計劃，設計了為 Win
     // 建立 MoeDict 元件實體
     var mdCom = new MoeDictRT.MoeDict("/path/to/moedict.sqlite3");
     // 查詢部首
-    var result = await mdCom.LookupWordAsync("萌");
+    var result = await mdCom.LookupRadicalAsync("萌");
     if (result.Error == "")
     {
       // result.Radical 為「艸」
@@ -52,7 +52,7 @@ moedict-rt 是根據「[還文於民](http://3du.tw)」計劃，設計了為 Win
     // 建立 MoeDict 元件實體
     var mdCom = new MoeDictRT.MoeDict("/path/to/moedict.sqlite3");
     // 查詢部首
-    mdCom.lookupWordAsync("萌").then(function(response) {
+    mdCom.lookupRadicalAsync("萌").then(function(response) {
       if (response.Error == "") {
         // response.Radical 為 "艸"
       }

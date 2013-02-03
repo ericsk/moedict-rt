@@ -11,3 +11,19 @@
 *.lai
 *.la
 *.a
+
+# Visual Studio files
+src/ARM
+src/Debug
+src/ipch
+src/Release
+src/MoeDictRT.sdf
+src/MoeDictRT.v11.suo
+src/MoeDictRT/ARM
+src/MoeDictRT/Debug
+src/MoeDictRT/Release
+src/MoeDictRT/x64
+src/MoeDictRT/MoeDictRT.vcxproj.filters
+src/MoeDictRT/MoeDictRT.vcxproj.user
+src/x64
+

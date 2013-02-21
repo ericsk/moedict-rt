@@ -20,7 +20,7 @@ MoeDict::~MoeDict()
 {
 }
 
-IAsyncOperation<IMap<String^, String^>^>^
+IAsyncOperation<LookupRadicalResult^>^
   MoeDict::LookupRadicalAsync(String^ word)
 {
   // pass the arguments to the implementation instance

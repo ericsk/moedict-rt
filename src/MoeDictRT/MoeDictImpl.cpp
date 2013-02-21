@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "MoeDict.h"
 #include "MoeDictImpl.h"
 
 using namespace std;
@@ -38,13 +39,13 @@ MoeDictImpl::~MoeDictImpl()
   }
 }
 
-IAsyncOperation<IMap<String^, String^>^>^
+IAsyncOperation<LookupRadicalResult^>^
   MoeDictImpl::LookupRadicalAsync(String^ word)
 {
-  return create_async([this, word](cancellation_token cancellationToken) -> task<IMap<String^, String^>^>
+  return create_async([this, word](cancellation_token cancellationToken) -> task<LookupRadicalResult^>
   {
     return LookupRadicalTask(word, cancellationToken)
-      .then([this](task<IMap<String^, String^>^> previousTask) -> IMap<String^, String^>^
+      .then([this](task<LookupRadicalResult^> previousTask) -> LookupRadicalResult^
     {
       try
       {
@@ -58,7 +59,7 @@ IAsyncOperation<IMap<String^, String^>^>^
   });
 }
 
-task<IMap<String^, String^>^> 
+task<LookupRadicalResult^> 
   MoeDictImpl::LookupRadicalTask(String^ word, cancellation_token cancellationToken)
 {
 
@@ -100,19 +101,17 @@ task<IMap<String^, String^>^>
 
   return completionTask.then([this](tuple<HRESULT, String^> resultTuple)
   {
-    auto ret = ref new Map<String^, String^>();
+    auto ret = ref new LookupRadicalResult();
 
     HRESULT result = std::get<0>(resultTuple);
     if (result == S_OK)
     {
-      ret->Insert(ref new String(L"Error"), ref new String(L""));
-      ret->Insert(ref new String(L"Radical"), std::get<1>(resultTuple));
+      ret->Radical = std::get<1>(resultTuple);
     }
     else
     {
-      ret->Insert(ref new String(L"Error"), std::get<1>(resultTuple));
-      ret->Insert(ref new String(L"Radical"), ref new String(L""));
+      ret->Error = std::get<1>(resultTuple);
     }
-    return task_from_result<IMap<String^, String^>^>(ret);
+    return task_from_result<LookupRadicalResult^>(ret);
   });
 }

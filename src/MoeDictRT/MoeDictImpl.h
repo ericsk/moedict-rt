@@ -14,12 +14,8 @@ namespace MoeDictRT
       /// Look up the radical of a word
       /// </summary>
       /// <param name="word" type="String^">The word to be looked up.</param>
-      /// <returns type="IAsyncOperation<IMap<String^, String^>^>^" />
-      Windows::Foundation::IAsyncOperation<
-      Windows::Foundation::Collections::IMap<
-        Platform::String^, 
-        Platform::String^
-      >^>^
+      /// <returns type="LookupRadicalResult^" />
+      Windows::Foundation::IAsyncOperation<MoeDictRT::LookupRadicalResult^>^
         LookupRadicalAsync(Platform::String^ word);
 
     private:
@@ -31,7 +27,7 @@ namespace MoeDictRT
         _completionEvent;
 
       // the actual task of the lookup.
-      Concurrency::task<Windows::Foundation::Collections::IMap<Platform::String^, Platform::String^>^>
+      Concurrency::task<MoeDictRT::LookupRadicalResult^>
         LookupRadicalTask(Platform::String^ word, Concurrency::cancellation_token cancellationToken);
 
     };
